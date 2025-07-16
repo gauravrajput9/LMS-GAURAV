@@ -2,11 +2,11 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
-  "start": "node index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -27,3 +27,4 @@
     "validator": "^13.15.15"
   }
 }
+
