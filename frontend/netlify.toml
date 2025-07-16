@@ -1,0 +1,7 @@
+[build]
+base = "frontend"
+publish = "frontend/dist"      # or "frontend/build" for CRA
+command = "npm run build"
+
+[build.environment]
+VITE_API_URL = "https://lms-gaurav.onrender.com"
