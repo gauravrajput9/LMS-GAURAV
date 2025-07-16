@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const app = axios.create({
-  baseURL: "http://localhost:3000/courseProgress",
+  baseURL: `${process.env.REACT_APP_CLIENT_URL}/courseProgress`,
   withCredentials: true, // This will apply to all requests by default
 });
 
