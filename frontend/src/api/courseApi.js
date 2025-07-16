@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const app = axios.create({
-  baseURL: "http://localhost:3000/course",
+  baseURL: `${process.env.REACT_APP_CLIENT_URL}/course`,
   withCredentials: true,
 });
 export const createCourse = async (formData) => {
