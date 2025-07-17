@@ -96,8 +96,8 @@ export function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 to-purple-200 px-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-6">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 to-purple-200 dark:from-zinc-900 dark:to-zinc-800 px-4">
+      <div className="w-full max-w-md bg-white dark:bg-zinc-900 rounded-3xl shadow-2xl p-8">
         <Tabs  value={formTab} onValueChange={setFormTab} className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-6">
             <TabsTrigger value="signup">Sign Up</TabsTrigger>
@@ -142,8 +142,8 @@ export function Login() {
                     <Label htmlFor="signup-password">Password</Label>
                     <Input
                       id="signup-password"
-                      type="password"
-                      name="password" // ✅ required for Chrome password suggestion
+                      type="password" // ✅ required for Chrome password suggestion
+                      name="password"
                       autoComplete="new-password"
                       placeholder="Create a strong password"
                       value={signUp.password}

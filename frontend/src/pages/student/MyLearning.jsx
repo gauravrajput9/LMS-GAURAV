@@ -27,12 +27,12 @@ const MyLearning = () => {
   });
 
   return (
-    <div className="flex justify-center px-4 sm:px-6 lg:px-8 py-10">
-      <div className="w-full max-w-7xl bg-gray-200 rounded-xl shadow-md p-6 sm:p-10">
-        <h1 className="text-2xl sm:text-3xl font-bold text-center text-gray-800">
+    <div className="flex justify-center px-4 sm:px-6 lg:px-8 py-10 bg-gradient-to-b from-slate-50 to-white dark:from-gray-900 dark:to-gray-950 min-h-screen">
+      <div className="w-full max-w-7xl bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl p-6 sm:p-10">
+        <h1 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 dark:text-gray-100">
           My Learning Page
         </h1>
-        <p className="mt-4 text-gray-700 text-center">
+        <p className="mt-4 text-gray-700 dark:text-gray-300 text-center">
           This is your personalized learning dashboard. Start exploring your
           courses and track your progress.
         </p>

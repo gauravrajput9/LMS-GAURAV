@@ -21,6 +21,7 @@ import CourseProgress from "./pages/student/CourseProgress";
 import RenderCourseDetails from "./pages/student/RenderCourseDetails";
 import SearchCourses from "./pages/student/SearchCourses";
 import Unauthorized from "./components/Unauthorized";
+import Footer from "@/components/Footer";
 
 const router = createBrowserRouter([
   {
@@ -124,5 +125,10 @@ export default function App() {
     return <div className="text-center p-10">Loading...</div>;
   }
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <Footer />
+    </>
+  );
 }
