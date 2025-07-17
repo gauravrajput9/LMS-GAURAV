@@ -25,7 +25,7 @@ export const webhook = async () => {
 
 export const getPurchasedCourse = async (id) => {
     try {
-        const response = await app.get(`/course/${id}/detail-with-status`, { withCredentials: true });
+        const response = await app.get(`/${id}/detail-with-status`, { withCredentials: true });
         return response.data;
     } catch (error) {
         throw error.response?.data || error;
