@@ -57,7 +57,7 @@ export const createCheckoutSession = async (req, res) => {
       message: "Session created successfully",
     });
   } catch (error) {
-   console.error("Payment session error:", {
+   console.log("Payment session error:", {
     message: error.message,
     stack: error.stack,
     cause: error.cause,
