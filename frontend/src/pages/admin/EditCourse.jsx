@@ -109,22 +109,22 @@ const EditCourse = () => {
 
   return (
     <div className="w-full max-w-4xl mx-auto px-4 py-8">
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
         <h1 className="text-2xl font-bold">Edit Course Details</h1>
         <Button onClick={() => navigate(`/admin/courses/${id}/lecture`)}>
           Go To Lectures Page
         </Button>
       </div>
 
-      <div className="bg-white rounded-xl shadow border p-6 space-y-6">
+      <div className="bg-white rounded-xl shadow border p-6 space-y-6 dark:bg-slate-900 dark:text-gray-100">
         <div>
           <h2 className="text-xl font-semibold mb-1">
             Basic Course Information
           </h2>
-          <p className="text-sm text-gray-500 mb-4">
+          <p className="text-sm text-gray-500 mb-4 dark:text-gray-400">
             Fill in the details below to update your course.
           </p>
-          <div className="flex gap-4">
+          <div className="flex flex-col md:flex-row gap-4">
             <div className="flex gap-4">
               {data?.course?.isPublished ? (
                 <button
@@ -203,7 +203,7 @@ const EditCourse = () => {
             value={courseData.description}
             onChange={handleInputChange}
             placeholder="Enter detailed description"
-            className="w-full border rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-gray-100"
           />
         </div>
 
@@ -261,7 +261,7 @@ const EditCourse = () => {
                 setImagePreview(file);
               }
             }}
-            className="mt-2 block w-full text-sm text-gray-700
+            className="mt-2 block w-full text-sm text-gray-700 dark:text-gray-100
               file:mr-4 file:py-2 file:px-4
               file:rounded-md file:border-0
               file:bg-black file:text-white
@@ -269,7 +269,7 @@ const EditCourse = () => {
           />
         </div>
 
-        <div className="flex justify-end gap-3 pt-6 border-t mt-6">
+        <div className="flex flex-col md:flex-row justify-end gap-3 pt-6 border-t mt-6">
           <Button variant="outline" onClick={() => navigate(-1)}>
             Cancel
           </Button>
