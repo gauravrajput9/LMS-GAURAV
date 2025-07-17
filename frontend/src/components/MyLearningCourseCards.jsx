@@ -39,7 +39,13 @@ const MyLearningCourseCards = ({ course, progress }) => {
 
       <Button
         className="mt-4 w-full"
-        onClick={() => navigate(`/courseProgress/${course._id}`)}
+        onClick={() => {
+          if (course._id) {
+            navigate(`/courseProgress/${course._id}`);
+          } else {
+            alert("Course ID is missing!");
+          }
+        }}
       >
         Continue
       </Button>
