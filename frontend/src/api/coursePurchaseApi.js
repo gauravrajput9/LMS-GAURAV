@@ -6,16 +6,28 @@ const app = axios.create({
 })
 
 export const createCheckoutSession = async (id) => {
-    const response = await app.post("/checkout/create-checkout-session", id)
-    return response.data
+    try {
+        const response = await app.post("/checkout/create-checkout-session", id)
+        return response.data
+    } catch (error) {
+        throw error.response?.data || error;
+    }
 }
 
 export const webhook = async () => {
-    const response = await app.post("/webhook")
-    return response.data
+    try {
+        const response = await app.post("/webhook")
+        return response.data
+    } catch (error) {
+        throw error.response?.data || error;
+    }
 }
 
 export const getPurchasedCourse = async (id) => {
-    const response = await app.get(`/course/${id}/detail-with-status`, { withCredentials: true });
-    return response.data;
+    try {
+        const response = await app.get(`/course/${id}/detail-with-status`, { withCredentials: true });
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || error;
+    }
 }

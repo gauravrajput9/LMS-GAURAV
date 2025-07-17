@@ -20,7 +20,7 @@ const Courses = () => {
 
   // console.log(publishedCourses);
   return (
-    <div className="p-6">
+    <div className="p-6 bg-gradient-to-b from-slate-50 to-white dark:from-gray-900 dark:to-gray-950 min-h-screen">
       {isLoading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {Array.from({ length: 8 }).map((_, index) => (

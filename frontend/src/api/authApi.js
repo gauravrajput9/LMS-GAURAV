@@ -6,28 +6,48 @@ const api = axios.create({
 });
 
 export const loginUser = async (credentials) => {
-  const response = await api.post("/login", credentials);
-  return response.data;
+  try {
+    const response = await api.post("/login", credentials);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error;
+  }
 };
 
 export const registerUser = async (credentials) => {
-  const response = await api.post("/register", credentials);
-  return response.data;
+  try {
+    const response = await api.post("/register", credentials);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error;
+  }
 };
 
 export const logoutUser = async () => {
-  const response = await api.get("/logout");
-  return response.data;
+  try {
+    const response = await api.get("/logout");
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error;
+  }
 };
 
 export const loadUser = async () => {
-  const response = await api.get("/getUser");
-  return response.data;
+  try {
+    const response = await api.get("/getUser");
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error;
+  }
 };
 
 export const updateUser = async (data) => {
-  const response = await api.post("/edit-user", data, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
-  return response.data;
+  try {
+    const response = await api.post("/edit-user", data, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error;
+  }
 };

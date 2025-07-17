@@ -64,7 +64,7 @@ const SearchCourses = () => {
 
   return (
     <div className="flex flex-col lg:flex-row gap-6 p-6 bg-gradient-to-b from-slate-50 to-white dark:from-gray-900 dark:to-gray-950 min-h-screen">
-      <aside className="w-full lg:w-1/4 bg-white dark:bg-gray-900 p-4 rounded-xl shadow-md">
+      <aside className="w-full lg:w-1/4 bg-white dark:bg-gray-900 p-4 rounded-xl shadow-md mb-4 lg:mb-0">
         <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Filters</h2>
         <Filter
           selectedCategories={category}

@@ -99,15 +99,15 @@ const Profile = () => {
           <AvatarImage src={data?.user.photoUrl} />
           <AvatarFallback>GR</AvatarFallback>
         </Avatar>
-        <div className="space-y-2">
-          <p className="text-gray-800 text-lg font-semibold">
-            Name: <span className="font-normal text-gray-600">{data?.user.name}</span>
+        <div className="space-y-2 w-full">
+          <p className="text-gray-800 dark:text-gray-100 text-lg font-semibold">
+            Name: <span className="font-normal text-gray-600 dark:text-gray-300">{data?.user.name}</span>
           </p>
-          <p className="text-gray-800 text-lg font-semibold">
-            Email: <span className="font-normal text-gray-600">{data?.user.email}</span>
+          <p className="text-gray-800 dark:text-gray-100 text-lg font-semibold">
+            Email: <span className="font-normal text-gray-600 dark:text-gray-300">{data?.user.email}</span>
           </p>
-          <p className="text-gray-800 text-lg font-semibold">
-            Role: <span className="font-normal text-gray-600">{data?.user.role.toUpperCase()}</span>
+          <p className="text-gray-800 dark:text-gray-100 text-lg font-semibold">
+            Role: <span className="font-normal text-gray-600 dark:text-gray-300">{data?.user.role.toUpperCase()}</span>
           </p>
           <Dialog>
             <DialogTrigger asChild>

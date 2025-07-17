@@ -32,7 +32,7 @@ const CourseDetails = ({ course, purchased, id }) => {
   };
 
   return (
-    <div className="bg-neutral-100 min-h-screen flex justify-center px-4 sm:px-6 md:px-12 lg:px-20 py-10">
+    <div className="bg-neutral-100 dark:bg-zinc-900 min-h-screen flex justify-center px-4 sm:px-6 md:px-12 lg:px-20 py-10">
       <div className="w-full max-w-screen-xl space-y-10">
         {/* Header */}
         <div className="bg-gray-900 text-white p-6 sm:p-8 rounded-lg shadow-md space-y-3">
@@ -65,8 +65,8 @@ const CourseDetails = ({ course, purchased, id }) => {
           {/* Description + Lectures */}
           <div className="lg:col-span-2 space-y-6">
             {/* Description */}
-            <div className="bg-slate-100 p-5 sm:p-6 rounded-lg shadow-sm border border-slate-200">
-              <h3 className="text-xl sm:text-2xl font-semibold text-slate-800 mb-2">
+            <div className="bg-slate-100 dark:bg-zinc-800 p-5 sm:p-6 rounded-lg shadow-sm border border-slate-200 dark:border-zinc-700">
+              <h3 className="text-xl sm:text-2xl font-semibold text-slate-800 dark:text-white mb-2">
                 {course.description}
               </h3>
             </div>
