@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const app = axios.create({
-    baseURL: `${process.env.REACT_APP_CLIENT_URL}/progress`,
+    baseURL: `${process.env.REACT_APP_API_BASE_URL}/progress`,
     withCredentials: true
 })
 
