@@ -27,6 +27,8 @@ const EditCourse = () => {
     coursePrice: "",
   });
 
+  const [priceError, setPriceError] = useState("");
+
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["course", id],
     queryFn: () => fetchSingleCourse(id),
@@ -60,16 +62,27 @@ const EditCourse = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setCourseData((prev) => ({ ...prev, [name]: value }));
+
+    // Validate price field in real time
+    if (name === "coursePrice") {
+      const num = Number(value);
+      if (!value || isNaN(num) || num <= 0) {
+        setPriceError("Price must be a number greater than 0");
+      } else {
+        setPriceError("");
+      }
+    }
   };
 
   const handleFormSubmit = () => {
+    const priceNum = Number(courseData.coursePrice);
     if (!courseData.courseTitle.trim())
       return toast.error("Course title required");
     if (courseData.description.trim().length < 30)
       return toast.error("Description must be at least 30 characters");
     if (!courseData.category) return toast.error("Category is required");
     if (!courseData.courseLevel) return toast.error("Course level is required");
-    if (!courseData.coursePrice || isNaN(courseData.coursePrice))
+    if (!courseData.coursePrice || isNaN(priceNum) || priceNum <= 0)
       return toast.error("Valid course price is required");
     if (!courseImage) return toast.error("Course image is required");
 
@@ -83,7 +96,6 @@ const EditCourse = () => {
   const publishCourseMutation = useMutation({
     mutationFn: ({ id, isPublished }) => publishCourse({ id, isPublished }),
     onSuccess: (data) => {
-  
       refetch();
       toast.success(data?.message);
       navigate("/admin/courses");
@@ -97,12 +109,13 @@ const EditCourse = () => {
     if (data?.course?.lectures.length === 0) {
       return toast.error("Cannot publish course with no lectures");
     }
-
     publishCourseMutation.mutate({ id, isPublished: true });
   };
+
   const handleUnPublishCourse = () => {
     publishCourseMutation.mutate({ id, isPublished: false });
   };
+
   const { isPending: coursePublishStatus } = publishCourseMutation;
 
   if (isLoading || !data?.course) return <h1>Fetching Course Data....</h1>;
@@ -118,9 +131,7 @@ const EditCourse = () => {
 
       <div className="bg-white rounded-xl shadow border p-6 space-y-6 dark:bg-slate-900 dark:text-gray-100">
         <div>
-          <h2 className="text-xl font-semibold mb-1">
-            Basic Course Information
-          </h2>
+          <h2 className="text-xl font-semibold mb-1">Basic Course Information</h2>
           <p className="text-sm text-gray-500 mb-4 dark:text-gray-400">
             Fill in the details below to update your course.
           </p>
@@ -133,8 +144,8 @@ const EditCourse = () => {
                     coursePublishStatus || data?.course?.lectures.length === 0
                   }
                   className={`flex items-center gap-2 px-4 py-2 rounded-md shadow-sm transition duration-200
-        ${coursePublishStatus ? "bg-yellow-400 cursor-not-allowed opacity-70" : "bg-yellow-600 hover:bg-yellow-700 text-white"}
-      `}
+            ${coursePublishStatus ? "bg-yellow-400 cursor-not-allowed opacity-70" : "bg-yellow-600 hover:bg-yellow-700 text-white"}
+          `}
                 >
                   {coursePublishStatus ? (
                     <>
@@ -150,9 +161,8 @@ const EditCourse = () => {
                   onClick={handlePublishCourse}
                   disabled={coursePublishStatus}
                   className={`flex items-center gap-2 px-4 py-2 rounded-md shadow-sm transition duration-200
-        ${coursePublishStatus ? "bg-green-400 cursor-not-allowed opacity-70" : "bg-green-600 hover:bg-green-700 text-white"}
-      
-        `}
+            ${coursePublishStatus ? "bg-green-400 cursor-not-allowed opacity-70" : "bg-green-600 hover:bg-green-700 text-white"}
+          `}
                 >
                   {coursePublishStatus ? (
                     <>
@@ -234,7 +244,15 @@ const EditCourse = () => {
               placeholder="Enter price"
               value={courseData.coursePrice}
               onChange={handleInputChange}
+              className={
+                priceError
+                  ? "border border-red-500 focus:ring-red-500"
+                  : ""
+              }
             />
+            {priceError && (
+              <p className="text-sm text-red-500">{priceError}</p>
+            )}
           </div>
         </div>
 
