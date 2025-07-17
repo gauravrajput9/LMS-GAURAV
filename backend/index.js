@@ -15,9 +15,13 @@ const app = express();
 // ⚠️ Must be BEFORE express.json()
 app.use("/purchase/webhook", express.raw({ type: "application/json" }));
 
+const allowedOrigins = [
+  "http://localhost:5173", // or your Vite dev server port
+  "https://lms-gaurav.netlify.app"
+];
 app.use(
   cors({
-    origin: "https://lms-gaurav.netlify.app",
+    origin: allowedOrigins,
     credentials: true,
   })
 );
