@@ -90,11 +90,11 @@ export const EditLecture = () => {
   const isLoading = updatesLecturesMutation.isPending;
 
   return (
-    <div className="bg-slate-50 min-h-screen px-4 py-8 md:px-10">
+    <div className="bg-white min-h-screen px-4 py-8 md:px-10 text-slate-800">
       <div className="mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <button
           onClick={() => navigate(`/admin/courses`)}
-          className="bg-slate-200 px-4 py-2 rounded-lg hover:bg-slate-300 transition duration-200"
+          className="bg-slate-200 text-slate-800 px-4 py-2 rounded-lg hover:bg-slate-300 transition duration-200 border border-slate-300"
         >
           Go Back
         </button>
@@ -105,7 +105,7 @@ export const EditLecture = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
         {/* Sidebar Panel */}
-        <div className="bg-white p-6 rounded-xl shadow-sm">
+        <div className="bg-white p-6 rounded-xl shadow-sm text-slate-800">
           <h2 className="text-xl font-semibold mb-2">Edit Lecture</h2>
           <p className="text-slate-600 mb-4">
             Make Changes And Click Save When Done
@@ -126,9 +126,9 @@ export const EditLecture = () => {
         </div>
 
         {/* Main Form */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-6 bg-white text-slate-800 p-6 rounded-xl shadow-sm border border-slate-200">
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">
+            <label className="block text-sm font-medium text-slate-800 mb-1">
               Title
             </label>
             <input
@@ -136,31 +136,31 @@ export const EditLecture = () => {
               placeholder="Enter a title for your lecture"
               value={lectureTitle}
               onChange={(e) => setLectureTitle(e.target.value)}
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+              className="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-slate-800 bg-white"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">
+            <label className="block text-sm font-medium text-slate-800 mb-1">
               Description
             </label>
             <textarea
               placeholder="Enter a description for your lecture"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none h-32 resize-none transition"
+              className="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none h-32 resize-none transition text-slate-800 bg-white"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">
+            <label className="block text-sm font-medium text-slate-800 mb-1">
               Video File *
             </label>
             <input
               type="file"
               accept="video/*"
               onChange={(e) => setVideoFile(e.target.files[0] || null)}
-              className="w-full file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+              className="w-full file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 text-slate-800 bg-white"
             />
           </div>
 
@@ -170,7 +170,7 @@ export const EditLecture = () => {
               checked={isVideoFree}
               onCheckedChange={(checked) => setVideoFree(checked)}
             />
-            <Label htmlFor="isVideoFree">Is This Video Free?</Label>
+            <Label htmlFor="isVideoFree" className="text-slate-800">Is This Video Free?</Label>
           </div>
 
           <div className="h-10 mb-4">

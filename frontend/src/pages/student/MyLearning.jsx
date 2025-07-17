@@ -45,16 +45,18 @@ const MyLearning = () => {
               You Are Not Enrolled In Any Course..
             </p>
           ) : (
-            myLearningArray.map((course, index) => {
-              const progress = progressQueries[index]?.data;
-              return (
-                <MyLearningCards
-                  key={course._id}
-                  course={course}
-                  progress={progress}
-                />
-              );
-            })
+            myLearningArray
+              .filter(course => course && course._id)
+              .map((course, index) => {
+                const progress = progressQueries[index]?.data;
+                return (
+                  <MyLearningCards
+                    key={course._id}
+                    course={course}
+                    progress={progress}
+                  />
+                );
+              })
           )}
         </div>
       </div>
