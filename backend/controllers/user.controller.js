@@ -62,11 +62,12 @@ export const loginUser = async (req, res) => {
     const returnUser = user.toObject();
     delete returnUser.password;
 
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: false,
-      sameSite: "Lax",
-    });
+   res.cookie("token", token, {
+  httpOnly: true,
+  sameSite: "None", // <-- Required for cross-site
+  secure: true,     // <-- Required for cross-site on HTTPS
+  // ...other options
+});
 
     return res.status(200).json({
       message: "User login successful",
@@ -113,8 +114,8 @@ export const logoutUser = async (req, res) => {
   try {
     res.clearCookie("token", {
       httpOnly: true,
-      secure: false,
-      sameSite: "Lax",
+  sameSite: "None", // <-- Required for cross-site
+  secure: true, 
     });
     res.status(200).json({ message: "User logged out successfully" });
   } catch (error) {
