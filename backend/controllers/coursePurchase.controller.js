@@ -6,12 +6,34 @@ import { Lecture } from "../models/lecture.model.js";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+const normalizeClientUrl = (baseUrl) => {
+  if (!baseUrl) return null;
+  return baseUrl.endsWith("/") ? baseUrl.slice(0, -1) : baseUrl;
+};
+
+const buildClientUrl = (pathname) => {
+  const normalized =
+    normalizeClientUrl(process.env.CLIENT_URL) ||
+    normalizeClientUrl(process.env.FRONTEND_URL);
+
+  if (!normalized) {
+    throw new Error(
+      "CLIENT_URL (or FRONTEND_URL) env variable is not configured for checkout redirects."
+    );
+  }
+
+  return new URL(pathname, normalized).toString();
+};
+
 // Create Checkout Session
 export const createCheckoutSession = async (req, res) => {
   try {
     const userId = req.user._id;
     const { id } = req.body;
 
+    if (!id) {
+      return res.status(400).json({ message: "Course id is required" });
+    }
 
     const course = await Course.findById(id);
     if (!course) return res.status(404).send("Course not found!");
@@ -22,6 +44,11 @@ export const createCheckoutSession = async (req, res) => {
       amount: course.coursePrice,
       status: "pending",
     });
+
+    const successUrl = buildClientUrl(
+      `/courseProgress/${course._id}?session_id={CHECKOUT_SESSION_ID}`
+    );
+    const cancelUrl = buildClientUrl(`/course-details/${course._id}`);
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -43,8 +70,8 @@ export const createCheckoutSession = async (req, res) => {
         userId: userId.toString(),
         id: course._id.toString(),
       },
-      success_url: `${process.env.CLIENT_URL}/courseProgress/${id}`,
-      cancel_url: `${process.env.CLIENT_URL}/course-detail/${id}`,
+      success_url: successUrl,
+      cancel_url: cancelUrl,
     });
 
     if (!session.url) return res.status(400).send("Error while creating session");
