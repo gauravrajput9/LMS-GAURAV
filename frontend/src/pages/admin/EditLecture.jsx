@@ -25,6 +25,7 @@ export const EditLecture = () => {
 
       navigate(`/admin/courses/${id}/lecture`);
       queryClient.invalidateQueries(["courseLectures", id]);
+      queryClient.invalidateQueries(["course", id]);
       toast.success("Lecture Updated Successfully");
       setLectureTitle("");
       setDescription("");
@@ -74,6 +75,7 @@ export const EditLecture = () => {
     onSuccess: (data) => {
    
       queryClient.invalidateQueries(["courseLectures", id]);
+      queryClient.invalidateQueries(["course", id]);
       toast.success("Lecture Deleted Successfully");
       navigate(`/admin/courses/${id}/lecture`);
     },

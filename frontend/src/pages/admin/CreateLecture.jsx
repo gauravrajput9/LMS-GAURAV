@@ -26,6 +26,7 @@ const CreateLecture = () => {
     onSuccess: () => {
       toast.success("Lecture Created Successfully");
       queryClient.invalidateQueries(["courseLectures", id]);
+      queryClient.invalidateQueries(["course", id]);
       setLectureTitle("");
     },
     onError: (error) => {
