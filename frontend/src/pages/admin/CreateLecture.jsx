@@ -64,7 +64,10 @@ const CreateLecture = () => {
       </div>
 
       <div className="flex gap-4 mb-10">
-        <button className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-800 transition-colors">
+        <button
+          onClick={() => navigate(`/admin/courses/${id}`)}
+          className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-800 transition-colors"
+        >
           Back to Course
         </button>
         <button
